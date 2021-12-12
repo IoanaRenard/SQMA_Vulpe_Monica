@@ -47,5 +47,13 @@ public class Student {
 			return 0;
 
 	}
+	
+	public int getNota(int index) {
+		return this.note.get(index);
+	}
+	
+	public float getMedie2Zecimale(){
+		return 0;
+	}
 
 }

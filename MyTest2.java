@@ -10,44 +10,49 @@ import org.junit.Test;
 
 public class MyTest2 {
 
-	Student student;
-	
-	@Before
-	public void setUp() throws Exception {
-		System.out.println("Apel setup");
-		
-		ArrayList<Integer> note = new ArrayList<>();
-		note.add(9);
-		note.add(10);
-		note.add(9);
-		
-		student = new Student("Gigel",21,note);
-	}
-	
+	// test fixture
+	public static final String NUME = "Gigel";
+	public static final int VARSTA = 20;
+	public static final ArrayList<Integer> NOTE = new ArrayList<>();
+
+	public Student student;
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		System.out.println("Apel setup global");
+		NOTE.add(9);
+		NOTE.add(10);
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		System.out.println("Apel teardown global");
+	}
+
+	@Before
+	public void setUp() throws Exception {
+		student = new Student(NUME, VARSTA, NOTE);
+	}
+
+	@Test
+	public void testConstructorRightCreareObiect() {
+
+		try {
+			Student student = new Student(NUME, VARSTA, NOTE);
+			assertNotNull(student);
+		} catch (Exception e) {
+			fail("Nu trebuia sa primim exceptie pentru valori OK");
+		}
 	}
 	
 	@Test
-	public void testGetMedieNoteFaraNote() {
+	public void testSetVarstaRight() {
+		int varstaModificata = 30;
+		//int varstaModificata = VARSTA++;
+		//int varstaModificata = student.getVarsta() + 1;
 		
-			ArrayList<Integer> note = new ArrayList<>();
-			student.setNote(note);
+		student.setVarsta(varstaModificata);
 		
-			float medieAsteptata = 0;
-			
-			float medieCalculata = student.getMedieNote();
-			
-			assertEquals("Test medie fara note", medieAsteptata,
-					medieCalculata, 0);
-				
+		assertEquals(varstaModificata, student.getVarsta());
+		
 	}
-
 
 }
