@@ -3,27 +3,15 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 public class MyTest2 {
 
 	Student student;
 	
-	
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	System.out.println("Apel setup global");
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-		System.out.println("Apel teardown global");
-	}
-
 	@Before
 	public void setUp() throws Exception {
 		System.out.println("Apel setup");
@@ -35,15 +23,15 @@ public class MyTest2 {
 		
 		student = new Student("Gigel",21,note);
 	}
-
-	@After
-	public void tearDown() throws Exception {
-		System.out.println("Apel teardown");
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		System.out.println("Apel setup global");
 	}
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+		System.out.println("Apel teardown global");
 	}
 	
 	@Test
@@ -60,5 +48,6 @@ public class MyTest2 {
 					medieCalculata, 0);
 				
 	}
+
 
 }
